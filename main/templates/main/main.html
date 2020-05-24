@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<section class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Mango Leaves Classification</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <input id="btnSubmit" class="btn btn-primary" type="submit" value="Upload"/>
+                <p>
+                <small><strong>Note :</strong> Supported Mango varieties are Alphonso, Amrapali, Chaunsa, Dusheri and Langra</small>
+                <p>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}
