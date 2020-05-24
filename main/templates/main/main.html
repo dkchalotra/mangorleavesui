@@ -4,6 +4,19 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2>Mango Leaves Classification</h2>
+            {% if not request.GET.prediction is None %}
+                {% if request.GET.prediction == 'alphonso' %}
+                    {% include 'main/alphonso.html' %}
+                {% elif request.GET.prediction ==  'amrapali'%}
+                    {% include 'main/amrapali.html' %}
+                {% elif request.GET.prediction ==  'chaunsa'%}
+                    {% include 'main/chaunsa.html' %}
+                {% elif request.GET.prediction ==  'dusheri'%}
+                    {% include 'main/dusheri.html' %}
+                {% elif request.GET.prediction ==  'langra'%}
+                    {% include 'main/langra.html' %}
+                {% endif %}
+            {% endif %}
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
