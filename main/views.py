@@ -9,7 +9,7 @@ import numpy
 import os
 import joblib
 from .feature_extraction import extract_features
-from .preprocessing import preprocess_image
+from .preprocessing import remove_shadow, resize_image
 
 labels_map = {
     0: models.LeafModel.ALPHONSO,
@@ -32,13 +32,38 @@ class HomeFormView(FormView):
         if form.is_valid():
             files = request.FILES.getlist('image_file')
             file_save_path = self.save_upload_file(files[0])
+            # resize original image
+            resize_image(file_save_path)
+
             # preprocess image
             do_preprocessing = form.cleaned_data.get('preprocessing')
+            filename, extension = os.path.basename(file_save_path).split('.')
+            preprocessed_file_path = os.path.join(os.path.dirname(file_save_path), filename + '_p.' + extension)
             if do_preprocessing:
-                preprocess_image(file_save_path)
+                remove_shadow(file_save_path, preprocessed_file_path)
+
+            # extract image features 
+            features = extract_features(file_save_path)
+
             # classify image file
-            leaf_label = self.classify_image(file_save_path)
-            new_leaf = models.LeafModel(image_file=os.path.basename(file_save_path), variety=leaf_label)
+            leaf_label = self.classify_image(features)
+
+            # Save Leaf Model
+            new_leaf = models.LeafModel(
+                original_image=os.path.basename(file_save_path),
+                is_preprocessed=do_preprocessing,
+                aspect_ratio=features.aspectratio,
+                rectangularity=features.area,
+                perimeter_ratio=features.perimeter,
+                compactness=features.formfactor,
+                vein_area_2_ratio=features.veinarea1,
+                vein_area_4_ratio=features.veinarea2,
+                elongation=features.elongation,
+                variety=leaf_label
+            )
+            new_leaf.mean_color = self.color_rgb2hex(features.meancolor)
+            if new_leaf.is_preprocessed:
+                new_leaf.preprocessed_image = os.path.basename(preprocessed_file_path)
             new_leaf.save()
             self.success_url = reverse('main.home') + "?prediction=" + leaf_label
             return self.form_valid(form)
@@ -54,8 +79,7 @@ class HomeFormView(FormView):
                 destination.write(chunk)
         return file_path
     
-    def classify_image(self, img_path):
-        features = extract_features(img_path)
+    def classify_image(self, features):
         svm_classifier = joblib.load(settings.SVM_CLASSIFIER_PATH)
         X = numpy.array([[
             features.aspectratio,
@@ -78,3 +102,6 @@ class HomeFormView(FormView):
         recent_leaves = models.LeafModel.objects.order_by('-id')[:RECENT_CLASSIFICATIONS_COUNT].all()
         data['recent_leaves'] = recent_leaves
         return data
+    
+    def color_rgb2hex(self, rgbcolor):
+        return "#" + hex(int(rgbcolor[0] * 255))[2:] + hex(int(rgbcolor[1] * 255))[2:] + hex(int(rgbcolor[2] * 255))[2:]
