@@ -25,7 +25,7 @@ SECRET_KEY = 'v81b4u1f2mjp47+qx#)nd$2l^7xf4m&jo66p#gt)90b^)+((a6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -126,6 +126,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/media/'
 
 # SVM Classfier Path
 SVM_CLASSIFIER_PATH = os.path.join(BASE_DIR, "classifier", "mango_leaf_classifier.svm")

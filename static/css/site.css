@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+:root{
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+*{
+    box-sizing: inherit;
+}
+body{
+    font-family: 'Work Sans', sans-serif;
+    padding-bottom: 5em;
+    padding-top: 2em;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Raleway', sans-serif;
+}
+.navbar-brand{
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+}
+.section-header{
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5em 0 0.5em 0.5em;
+    margin: 0.5em 0 0 0;
+    border-left: 5px solid #005ec9;
+    background-color:#007bff;;
+    color: #fff;
+}
+
+.section-body{
+    border: 1px solid #eee;
+    border-top: none;
+    padding: 1em 3em;
+}
+
+ul.errorlist{
+    list-style: none;
+    padding: 0;
+    color: #dc3545;
+}
+
+img.leaf-thumbnail{
+    width: 280px;
+    height: 160px;
+}

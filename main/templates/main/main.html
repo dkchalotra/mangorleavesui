@@ -1,32 +1,73 @@
 {% extends 'main/base.html' %}
 {% block content %}
+{% load static %}
+{% comment %} {% if not request.GET.prediction is None %}
+    {% if request.GET.prediction == 'alphonso' %}
+        {% include 'main/alphonso.html' %}
+    {% elif request.GET.prediction ==  'amrapali'%}
+        {% include 'main/amrapali.html' %}
+    {% elif request.GET.prediction ==  'chaunsa'%}
+        {% include 'main/chaunsa.html' %}
+    {% elif request.GET.prediction ==  'dusheri'%}
+        {% include 'main/dusheri.html' %}
+    {% elif request.GET.prediction ==  'langra'%}
+        {% include 'main/langra.html' %}
+    {% endif %}
+{% endif %} {% endcomment %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">MANGIFERA</h1>
+        <p class="lead">This website is used to identify mango variety from uploaded mango leaf image. Currently supported mango varieties are Alphonso, Amrapali, Chaunsa, Dusheri and Langra.</p>
+    </div>
+</div>
 <section class="container">
+    <h4 class="section-header"><i class="fas fa-leaf"></i> Upload Leaf Image</h4>
     <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h2>Mango Leaves Classification</h2>
-            {% if not request.GET.prediction is None %}
-                {% if request.GET.prediction == 'alphonso' %}
-                    {% include 'main/alphonso.html' %}
-                {% elif request.GET.prediction ==  'amrapali'%}
-                    {% include 'main/amrapali.html' %}
-                {% elif request.GET.prediction ==  'chaunsa'%}
-                    {% include 'main/chaunsa.html' %}
-                {% elif request.GET.prediction ==  'dusheri'%}
-                    {% include 'main/dusheri.html' %}
-                {% elif request.GET.prediction ==  'langra'%}
-                    {% include 'main/langra.html' %}
-                {% endif %}
-            {% endif %}
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ form.as_p }}
+        <div class="col">
+            <div class="section-body">
+                <div class="alert alert-info" role="alert">
+                    <strong>Note :</strong> Supported mango leaf varieties are Alphonso, Amrapali, Chaunsa, Dusheri and Langra.
                 </div>
-                <input id="btnSubmit" class="btn btn-primary" type="submit" value="Upload"/>
-                <p>
-                <small><strong>Note :</strong> Supported Mango varieties are Alphonso, Amrapali, Chaunsa, Dusheri and Langra</small>
-                <p>
-            </form>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.as_p }}
+                    </div>
+                    <input id="btnSubmit" class="btn btn-primary" type="submit" value="Upload"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container">
+    <h4 class="section-header"><i class="fas fa-clock"></i> Recent Classifications</h4>
+    <div class="row">
+        <div class="col">
+            <div class="section-body">
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
+                    {% for leaf in recent_leaves %}
+                        <div class="col mb-2">
+                            <a href="#">
+                                <div class="card bg-light text-white">
+                                    <img src="{% get_media_prefix %}{{ leaf.image_file }}" class="card-img-top img-thumbnail" alt="{{ leaf.variety }} mango leaf">
+                                    <div class="card-img-overlay">
+                                        <h6 class="card-title">{{ leaf.variety|title }}</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% empty %}
+                        <div class="col">
+                            <p>No recent classifications</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if recent_leaves %}
+                    <div class="text-center mt-4">
+                        <a href="#" class="btn btn-sm btn-primary">View all</a>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </section>

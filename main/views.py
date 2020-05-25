@@ -2,20 +2,24 @@ from django.views.generic import FormView
 from django.urls import reverse
 from django.conf import settings
 from . import forms
+from . import models
 import string
 import random
 import numpy
 import os
 import joblib
 from .feature_extraction import extract_features
+from .preprocessing import preprocess_image
 
 labels_map = {
-    0: 'alphonso',
-    1: 'amrapali',
-    2: 'chausa',
-    3: 'dusheri',
-    4: 'langra',
+    0: models.LeafModel.ALPHONSO,
+    1: models.LeafModel.AMRAPALI,
+    2: models.LeafModel.CHAUNSA,
+    3: models.LeafModel.DUSHERI,
+    4: models.LeafModel.LANGRA,
 }
+
+RECENT_CLASSIFICATIONS_COUNT = 8
 
 # Create your views here.
 class HomeFormView(FormView):
@@ -25,11 +29,17 @@ class HomeFormView(FormView):
     def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        files = request.FILES.getlist('image_file')
         if form.is_valid():
+            files = request.FILES.getlist('image_file')
             file_save_path = self.save_upload_file(files[0])
+            # preprocess image
+            do_preprocessing = form.cleaned_data.get('preprocessing')
+            if do_preprocessing:
+                preprocess_image(file_save_path)
             # classify image file
             leaf_label = self.classify_image(file_save_path)
+            new_leaf = models.LeafModel(image_file=os.path.basename(file_save_path), variety=leaf_label)
+            new_leaf.save()
             self.success_url = reverse('main.home') + "?prediction=" + leaf_label
             return self.form_valid(form)
         else:
@@ -61,3 +71,10 @@ class HomeFormView(FormView):
         ]], dtype=float)
         Y = labels_map[svm_classifier.predict(X)[0]]
         return Y
+
+    def get_context_data(self, **kwargs):
+        data =  super().get_context_data(**kwargs)
+        # Add recent leaves classifications
+        recent_leaves = models.LeafModel.objects.order_by('-id')[:RECENT_CLASSIFICATIONS_COUNT].all()
+        data['recent_leaves'] = recent_leaves
+        return data
