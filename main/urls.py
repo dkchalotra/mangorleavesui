@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.HomeFormView.as_view(), name='main.home'),
+    path('leaf/<int:pk>/', views.LeafDetailView.as_view(), name='leaf.detail'),
 ]

@@ -1,4 +1,4 @@
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.urls import reverse
 from django.conf import settings
 from . import forms
@@ -109,3 +109,9 @@ class HomeFormView(FormView):
     
     def color_rgb2hex(self, rgbcolor):
         return "#" + hex(int(rgbcolor[0] * 255))[2:] + hex(int(rgbcolor[1] * 255))[2:] + hex(int(rgbcolor[2] * 255))[2:]
+
+
+
+class LeafDetailView(DetailView):
+    model = models.LeafModel
+    template_name = 'main/leaf_detail.html'

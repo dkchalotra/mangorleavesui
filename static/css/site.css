@@ -22,6 +22,15 @@ h1,h2,h3,h4,h5,h6{
     font-weight: bold;
     letter-spacing: 0.15em;
 }
+.page-header{
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5em 0 0.5em 0.5em;
+    margin: 0.5em 0 0 0;
+    border-left: 5px solid #005ec9;
+    background-color:#007bff;;
+    color: #fff;
+}
 .section-header{
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -35,7 +44,7 @@ h1,h2,h3,h4,h5,h6{
 .section-body{
     border: 1px solid #eee;
     border-top: none;
-    padding: 1em 3em;
+    padding: 1em 2em;
 }
 
 ul.errorlist{
@@ -47,4 +56,75 @@ ul.errorlist{
 img.leaf-thumbnail{
     width: 280px;
     height: 160px;
+}
+
+ul.feature-list{
+    list-style-type:none;
+    padding:0;
+    font-size: 0.8rem;
+}
+ul.feature-list > li{
+    margin: 0.5em 0;
+    font-weight: bold;
+}
+ul.feature-list > li > span.feature-title{
+    display: inline-block;
+    color: #000;
+    font-weight: normal;
+    font-size: 1rem;
+    padding: 0.25em 0;
+    background-color: #eee;
+    border-left: 4px solid #ccc;
+    padding: 0.5em 0.5em;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+
+    cursor: default;
+}
+ul.feature-list > li > span.color{
+    display: inline-block;
+    font-weight: normal;
+    color: #fff;
+    padding: .4em 0.8em;
+    border-radius: 2em;
+}
+
+.prediction-box{
+    display: flex;
+    font-size: 1.5rem;
+    flex-flow: row nowrap;
+}
+.prediction-box > .title{
+    font-family: 'Raleway', sans-serif;
+    background-color: #007bff;
+    border-left: 5px solid #005ec9;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+}
+.prediction-box > .result{
+    flex-grow: 1;
+    text-align: right;
+    background-color: #eee;
+}
+.prediction-box > .result > a.label{
+    display: inline-block;
+    color: #fff;
+    padding: 0.25em 0.8em 0.25em 0.8em;
+    height: 100%;
+    transition: all .25s linear;
+}
+.prediction-box > .result > a.label:link{
+    background-color:#28a745;
+}
+.prediction-box > .result > a.label:visited{
+    background-color:#28a745;
+}
+.prediction-box > .result > a.label:hover{
+    text-decoration: none;
+    background-color:#0f6122;
+}
+.prediction-box > .result > a.label:active{
+    background-color:#0b3816;
 }

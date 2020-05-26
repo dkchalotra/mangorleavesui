@@ -1,19 +1,9 @@
 {% extends 'main/base.html' %}
+{% block title %}
+Mangifera - Mango Leaves Classification
+{% endblock title %}
 {% block content %}
 {% load static %}
-{% comment %} {% if not request.GET.prediction is None %}
-    {% if request.GET.prediction == 'alphonso' %}
-        {% include 'main/alphonso.html' %}
-    {% elif request.GET.prediction ==  'amrapali'%}
-        {% include 'main/amrapali.html' %}
-    {% elif request.GET.prediction ==  'chaunsa'%}
-        {% include 'main/chaunsa.html' %}
-    {% elif request.GET.prediction ==  'dusheri'%}
-        {% include 'main/dusheri.html' %}
-    {% elif request.GET.prediction ==  'langra'%}
-        {% include 'main/langra.html' %}
-    {% endif %}
-{% endif %} {% endcomment %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">MANGIFERA</h1>
@@ -48,7 +38,7 @@
                 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
                     {% for leaf in recent_leaves %}
                         <div class="col mb-2">
-                            <a href="#">
+                            <a href="{% url 'leaf.detail' pk=leaf.id %}">
                                 <div class="card bg-light text-dark">
                                     <img src="{% get_media_prefix %}{{ leaf.original_image }}" class="card-img-top img-thumbnail" alt="{{ leaf.variety }} mango leaf">
                                     <div class="card-img-overlay">

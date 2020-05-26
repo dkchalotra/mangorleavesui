@@ -1,0 +1,92 @@
+{% extends "main/base.html" %}
+{% block title %}
+Leaf Detail - Mangifera
+{% endblock title %}
+{% load static %}
+{% block content %}
+<section class="container mt-5 mb-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main.home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Leaf Detail</li>
+        </ol>
+    </nav>
+    <div class="prediction-box">
+        <div class="title"><i class="far fa-chart-bar"></i> Predicted Variety</div>
+        <div class="result"><a class="label" href="#">{{object.variety|title}}</a></div>
+    </div>
+</section>
+
+<section class="container">
+    {% if object.is_preprocessed %}
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top" src="{% get_media_prefix%}/{{object.original_image}}" alt="Original {{object.variety}} mango leaf">
+                    <div class="card-body">
+                        <h5 class="card-title">Resized original image</h5>
+                        <p class="card-text">
+                            This is the resized (700W x 400H) version of original image uploaded by user.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top" src="{% get_media_prefix%}/{{object.preprocessed_image}}" alt="Preprocessed {{object.variety}} mango leaf">
+                    <div class="card-body">
+                        <h5 class="card-title">Preprocessed image</h5>
+                        <p class="card-text">
+                            This is the resulting image (700W x 400H) obtained after applying preprocessing operations on resized image.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col col-md-6 offset-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="{% get_media_prefix%}/{{object.original_image}}" alt="Original {{object.variety}} mango leaf">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Original Image</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</section>
+
+<section class="container">
+    <h4 class="section-header"><i class="fas fa-leaf"></i> Extracted Leaf Features</h4>
+    <div class="row">
+        <div class="col">
+            <div class="section-body">
+                <ul class="feature-list">
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="Ratio of Minor axis to Major axis">Aspect Ratio</span> : {{object.aspect_ratio}}</li>
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="Object shape similarity with rectangular shape">Rectangularity</span> : {{object.rectangularity}}</li>
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="Ratio of object perimeter to bounding box perimeter">Perimeter Ratio</span> : {{object.perimeter_ratio}}</li>
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="Ratio between the object area with circle area uses the same perimeter">Compactness</span> : {{object.compactness}}</li>
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="Mean color in object bounding box">Mean Color</span> : <span class="color" style="background-color:{{object.mean_color}};">{{object.mean_color}}</span></li>
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="">Vein Area Ratio (2)</span> : {{object.vein_area_2_ratio}}</li>
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="">Vein Area Ratio (4)</span> : {{object.vein_area_4_ratio}}</li>
+                    <li><span class="feature-title" data-toggle="tooltip" data-placement="bottom" title="">Elongation</span> : {{object.elongation}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block javascript %}
+<!--PopperJS for popovers-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script>
+    // Initialize all Popover elements
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'body'
+        })
+    });
+</script>
+{% endblock javascript %}
