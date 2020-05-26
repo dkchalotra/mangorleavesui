@@ -4,14 +4,14 @@ class LeafModel(models.Model):
     ALPHONSO = 'alphonso'
     AMRAPALI = 'amrapali'
     CHAUNSA = 'chaunsa'
-    DUSHERI = 'dusheri'
+    DASHERI = 'dasheri'
     LANGRA = 'langra'
 
     VARIETY_CHOICES = [
         (ALPHONSO, 'Alphonso'),
         (AMRAPALI, 'Amrapali'),
         (CHAUNSA, 'Chaunsa'),
-        (DUSHERI, 'Dusheri'),
+        (DASHERI, 'Dasheri'),
         (LANGRA, 'Langra'),
     ]
 

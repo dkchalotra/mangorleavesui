@@ -15,7 +15,7 @@ labels_map = {
     0: models.LeafModel.ALPHONSO,
     1: models.LeafModel.AMRAPALI,
     2: models.LeafModel.CHAUNSA,
-    3: models.LeafModel.DUSHERI,
+    3: models.LeafModel.DASHERI,
     4: models.LeafModel.LANGRA,
 }
 
