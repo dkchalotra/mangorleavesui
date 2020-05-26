@@ -53,4 +53,4 @@ def resize_image(img_path):
         top = (r_height - BOX_HEIGHT) // 2
         bottom = top + BOX_HEIGHT
         resized = resized.crop((left, top, right, bottom))
-    resized.save(img_path, 'JPEG')
+    resized.save(img_path)

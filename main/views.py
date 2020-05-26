@@ -42,8 +42,12 @@ class HomeFormView(FormView):
             if do_preprocessing:
                 remove_shadow(file_save_path, preprocessed_file_path)
 
-            # extract image features 
-            features = extract_features(file_save_path)
+            # extract image features
+            features = None
+            if do_preprocessing:
+                features = extract_features(preprocessed_file_path)
+            else:
+                features = extract_features(file_save_path)
 
             # classify image file
             leaf_label = self.classify_image(features)
