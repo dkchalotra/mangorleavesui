@@ -1,0 +1,63 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Predicted Leaves - Mangifera
+{% endblock title %}
+{% load static %}
+{% block content %}
+<section class="container mt-5 mb-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main.home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Predicted Leaves</li>
+        </ol>
+    </nav>
+</section>
+<section class="container">
+    <h4 class="section-header"><i class="fab fa-pagelines"></i> Predicted Leaves</h4>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 mt-4">
+            {% for leaf in object_list %}
+                <div class="col mb-2">
+                    <a href="{% url 'leaf.detail' pk=leaf.id %}">
+                        <div class="card bg-light text-secondary">
+                            <img src="{% get_media_prefix %}{{ leaf.original_image }}" class="card-img-top img-thumbnail" alt="{{ leaf.variety }} mango leaf">
+                            <div class="card-img-overlay">
+                                <h6 class="card-title">{{ leaf.variety|title }}</h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% empty %}
+                <div class="col">
+                    <p><i class="fas fa-info-circle"></i> No predictions are made yet.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    {% if object_list %}
+        <div class="row">
+        <div class="col-12">
+            <nav aria-label="Predicted Leaves Pages">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+                    {% endif %}
+                    {% for i in page_obj.paginator.page_range %}
+                        {% if page_obj.number == i %}
+                             <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+    </div>
+</section>
+{% endblock content %}

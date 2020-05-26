@@ -49,13 +49,13 @@ Mangifera - Mango Leaves Classification
                         </div>
                     {% empty %}
                         <div class="col">
-                            <p>No recent classifications</p>
+                            <p><i class="fas fa-info-circle"></i> No recent classifications</p>
                         </div>
                     {% endfor %}
                 </div>
                 {% if recent_leaves %}
                     <div class="text-center mt-4">
-                        <a href="#" class="btn btn-sm btn-primary">View all</a>
+                        <a href="{% url 'leaf.list' %}" class="btn btn-sm btn-primary">View all</a>
                     </div>
                 {% endif %}
             </div>
