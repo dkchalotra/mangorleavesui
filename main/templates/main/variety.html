@@ -1,0 +1,131 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Mango Varieties - Mangifera
+{% endblock title %}
+{% load static %}
+{% block content %}
+<section class="container mt-3 mb-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main.home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Mango Varieties</li>
+        </ol>
+    </nav>
+</section>
+<section class="container">
+    <h4 class="section-header mb-3"><i class="fas fa-list-ul"></i> Mango Varieties</h4>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4" id="alphonso">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'alphonso.jpg' %}" alt="Alphonso Mango" class="card-img img-thumbnail">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>ALPHONSO</strong></h5>
+                            <p class="card-text">
+                                Favored for its sweetness, richness and flavor, the Alphonso has been called the king of mangoes.
+                            </p>
+                            <p class="card-text">
+                                The variety is named after Afonso de Albuquerque, a Portuguese general and military expert who helped establish Portuguese colonies in India. The Alphonso is also one of the most expensive varieties of mango, and is grown mainly in western India.
+                            </p>
+                            <p class="card-text">
+                                They have a rich, creamy, tender texture and delicate, non-fibrous, juicy pulp. The skin of a fully ripe Alphonso mango turns bright golden-yellow with a tinge of red which spreads across the top of the fruit. The flesh of the fruit is saffron-colored.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4" id="amrapali">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'amrapali.jpg' %}" alt="Amrapali Mango" class="card-img img-thumbnail">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>AMRAPALI</strong></h5>
+                            <p class="card-text">
+                                The 'Amrapali' mango is a named mango cultivar introduced in 1971. It was developed as a hybrid variety of 'Dasheri' and 'Neelum' by Dr. Pijush Kanti Majumdar at the Indian Agriculture Research Institute in Delhi. Since then this mango has been introduced to farms and orchards across India. AMRAPALI Mango was first planted in West Bengal in Chakdaha, Nadia district. The seed was given by Dr. Pijush Kanti Majumdar.
+                            </p>
+                            <p class="card-text">
+                                The tree is a dwarf, regular-bearer, with clusters of small-sized fruits. Its flesh is a deep orange-red and contains approximately 2.5–3.0 times more β carotene content than other commercial varieties of mango. However, it is known to have a shorter shelf life. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4" id="chaunsa">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'chaunsa.jpg' %}" alt="Chaunsa Mango" class="card-img img-thumbnail">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>CHAUNSA</strong></h5>
+                            <p class="card-text">
+                                Also called "sumer bahist," this variety of mango was originally made popular by Sher Shah Suri throughout the Indian subcontinent. While commemorating his victory over Humayun at Chausa Bihar of India, he gave his favorite mango the name Chaunsa.
+                            </p>
+                            <p class="card-text">
+                                The fruit has a golden-yellow color when it is soft, is almost fiberless, and has an aromatic, pleasant, sweet flavor. Commonly available varieties in Pakistan are greenish-yellow. The unique taste and richness in its flavor makes it a worldwide favorite. Overall, it is considered the best mango in terms of its rich aroma, sweet taste, juicy pulp and high nutritional value.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4" id="dusheri">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'dusheri.jpg' %}" alt="Dasheri Mango" class="card-img img-thumbnail">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>DASHERI</strong></h5>
+                            <p class="card-text">
+                                In the 18th century, Dasheri first appeared in the gardens of Nawab of Lucknow. Since then Dasheri plants have been produced and planted throughout India. People from the village Dasheri near Kakori, Uttar Pradesh have the mother plant. This mother plant is said to be around 200 years old. It bears fruit every alternate year.
+                            </p>
+                            <p class="card-text">
+                                The Dasheri mango is exported internationally to various countries including Singapore, Hong Kong, The Philippines, Malaysia, and other countries in South-East Asia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4" id="langra">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{% static 'langra.jpg' %}" alt="Langra Mango" class="card-img img-thumbnail">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>LANGRA</strong></h5>
+                            <p class="card-text">
+                                The 'Langra' mango, also known as Banarasi Langra, is a mango cultivar primarily grown in Varanasi, or Banaras, Northern India, Bangladesh and Pakistan.
+                            </p>
+                            <p class="card-text">
+                                This cultivar retains a greenish tinge while ripening. It is normally harvested during the last half of July. Around 2006, it was known to be gaining popularity on the international market. It is considered suitable for slicing and canning.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

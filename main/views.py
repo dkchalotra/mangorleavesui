@@ -1,4 +1,4 @@
-from django.views.generic import FormView, DetailView, ListView
+from django.views.generic import FormView, DetailView, ListView, TemplateView
 from django.urls import reverse
 from django.conf import settings
 from . import forms
@@ -121,3 +121,6 @@ class LeafListView(ListView):
     template_name = 'main/leaves_predicted.html'
     queryset = models.LeafModel.objects.order_by('-id').all()
     paginate_by = 12
+
+class VarietyTemplateView(TemplateView):
+    template_name = 'main/variety.html'

@@ -14,7 +14,7 @@ Leaf Detail - Mangifera
     </nav>
     <div class="prediction-box">
         <div class="title"><i class="far fa-chart-bar"></i> Predicted Variety</div>
-        <div class="result"><a class="label" href="#">{{object.variety|title}}</a></div>
+        <div class="result"><a class="label" href="{% url 'leaf.varieties' %}#{{object.variety}}">{{object.variety|title}}</a></div>
     </div>
 </section>
 
