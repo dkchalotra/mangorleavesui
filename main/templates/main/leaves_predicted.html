@@ -34,7 +34,7 @@ Predicted Leaves - Mangifera
         </div>
     </div>
     <hr>
-    {% if object_list %}
+    {% if object_list and page_obj.paginator.num_pages > 1 %}
         <div class="row">
         <div class="col-12">
             <nav aria-label="Predicted Leaves Pages">

@@ -69,7 +69,7 @@ class HomeFormView(FormView):
             if new_leaf.is_preprocessed:
                 new_leaf.preprocessed_image = os.path.basename(preprocessed_file_path)
             new_leaf.save()
-            self.success_url = reverse('main.home') + "?prediction=" + leaf_label
+            self.success_url = reverse('leaf.detail', kwargs={'pk':new_leaf.id})
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
