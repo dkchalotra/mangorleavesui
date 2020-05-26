@@ -17,7 +17,7 @@ Mangifera - Mango Leaves Classification
         <div class="col">
             <div class="section-body">
                 <div class="alert alert-info" role="alert">
-                    <strong>Note :</strong> Leaf must have horizontal orientation inside image.
+                    <strong>Note :</strong> Leaf must have horizontal orientation inside image with white background.
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -39,7 +39,7 @@ Mangifera - Mango Leaves Classification
                     {% for leaf in recent_leaves %}
                         <div class="col mb-2">
                             <a href="{% url 'leaf.detail' pk=leaf.id %}">
-                                <div class="card bg-light text-dark">
+                                <div class="card bg-light text-secondary">
                                     <img src="{% get_media_prefix %}{{ leaf.original_image }}" class="card-img-top img-thumbnail" alt="{{ leaf.variety }} mango leaf">
                                     <div class="card-img-overlay">
                                         <h6 class="card-title">{{ leaf.variety|title }}</h6>
