@@ -10,7 +10,7 @@ django = "==3.0.6"
 opencv-python = "==4.2.0.34"
 joblib = "==0.15.0"
 numpy = "==1.18.4"
-Pillow = "==7.1.2"
+Pillow = "==8.2.0"
 scikit-learn = "==0.23.0"
 
 [requires]
